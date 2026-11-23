@@ -42,7 +42,6 @@
     .en { font-family: 'Playfair Display', serif; letter-spacing: 0.6px; }
     .container { max-width: 480px; margin: 0 auto; padding: 16px; }
 
-    /* Logo pure black preservation */
     .logo-wrap {
       background: #000000;
       border-radius: 50%;
@@ -60,7 +59,6 @@
       display: block;
     }
 
-    /* Header */
     .topbar {
       position: sticky;
       top: 0;
@@ -96,7 +94,6 @@
       gap: 5px;
     }
 
-    /* Cards & Inputs */
     .card {
       background: linear-gradient(160deg, #141414 0%, #0b0b0b 100%);
       border: 1px solid var(--border);
@@ -148,7 +145,6 @@
     .btn-success { background: var(--success); color: #05140c; }
     .btn-danger { background: rgba(224, 82, 82, 0.15); border: 1px solid var(--danger); color: #ff8e8e; }
 
-    /* Stamps Grid */
     .stamps-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -195,7 +191,6 @@
       50% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
     }
 
-    /* QR Box */
     .qr-box {
       background: #ffffff;
       padding: 12px;
@@ -206,7 +201,6 @@
       margin: 8px auto;
     }
 
-    /* Bottom Nav */
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -237,7 +231,6 @@
     .nav-item.active { color: var(--gold-light); }
     .nav-item span.ico { font-size: 19px; }
 
-    /* Chips & Lists */
     .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
     .chip {
       padding: 7px 12px;
@@ -273,7 +266,6 @@
     .b-confirmed { background: rgba(56, 183, 120, 0.2); color: #6be3a4; }
     .b-cancelled { background: rgba(224, 82, 82, 0.2); color: #ff9a9a; }
 
-    /* Modal */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -309,14 +301,15 @@
       border: 1px solid var(--gold);
       color: #fff;
       padding: 10px 18px;
-      border-radius: 999px;
+      border-radius: 20px;
       font-size: 13px;
       font-weight: 700;
       z-index: 90;
       box-shadow: 0 8px 25px rgba(0,0,0,0.7);
       display: none;
-      max-width: 90%;
+      max-width: 92%;
       text-align: center;
+      word-break: break-word;
     }
   </style>
 </head>
@@ -324,663 +317,8 @@
 
 <div id="toast" class="toast"></div>
 
-<!-- Top Bar -->
 <header id="appHeader" class="topbar hidden">
   <div class="topbar-inner">
     <div class="brand-mini">
       <div class="logo-wrap">
-        <img src="./IMG_9701.jpeg" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/hatmhamed867-cell/sense-salon/main/IMG_9701.jpeg'" alt="SENSE Beauty Salon" />
-      </div>
-      <div>
-        <div class="brand-title en">SENSE Beauty Salon</div>
-        <div class="brand-sub" id="headerUser">VIP Loyalty Club</div>
-      </div>
-    </div>
-    <div style="display:flex; gap:6px;">
-      <button class="icon-btn" onclick="openAdminModal()" title="لوحة الإدارة">🔒 الإدارة</button>
-      <button class="icon-btn" onclick="logoutCustomer()" title="تبديل الحساب">خروج</button>
-    </div>
-  </div>
-</header>
-
-<main class="container">
-  <!-- 1. Login / Welcome Screen -->
-  <section id="loginView">
-    <div class="card" style="text-align:center; padding-top:26px;">
-      <div class="logo-wrap" style="width:130px; height:130px; margin:0 auto 14px;">
-        <img src="./IMG_9701.jpeg" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/hatmhamed867-cell/sense-salon/main/IMG_9701.jpeg'" alt="SENSE Beauty Salon Logo" />
-      </div>
-      <h1 class="en gold-text" style="margin:0; font-size:24px;">SENSE Beauty Salon</h1>
-      <p style="color:var(--muted); font-size:13px; margin:6px 0 18px;">
-        كارت الولاء الرقمي وحجز المواعيد — اجمعي 6 أختام واحصلي على <strong style="color:var(--gold-light)">خصم 50%</strong>
-      </p>
-
-      <div style="text-align:right;">
-        <label>رقم الموبايل</label>
-        <input id="loginPhone" type="tel" inputmode="tel" placeholder="01XXXXXXXXX" />
-        <label>الاسم (للعميلات الجدد)</label>
-        <input id="loginName" type="text" placeholder="اكتبي اسمك بالكامل" />
-        <button class="btn btn-gold" onclick="handleLogin()" id="loginBtn">دخول / فتح الكارت ✨</button>
-      </div>
-
-      <div style="margin-top:14px; border-top:1px solid rgba(255,255,255,0.08); padding-top:12px;">
-        <button class="btn btn-outline" onclick="openAdminModal()" style="font-size:13px; padding:10px;">
-          🔒 دخول الشركاء والكاشير
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- 2. Customer Wallet (Stamps) -->
-  <section id="tabWallet" class="hidden">
-    <div class="card">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-        <div>
-          <div style="font-size:12px; color:var(--muted);">أهلاً بيكي،</div>
-          <div id="custNameDisplay" style="font-size:18px; font-weight:800; color:var(--gold-light);">—</div>
-          <div id="custPhoneDisplay" style="font-size:12px; color:var(--muted);">—</div>
-        </div>
-        <div class="logo-wrap" style="width:54px; height:54px;">
-          <img src="./IMG_9701.jpeg" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/hatmhamed867-cell/sense-salon/main/IMG_9701.jpeg'" alt="SENSE" />
-        </div>
-      </div>
-
-      <div id="rewardBanner" class="reward-banner">
-        اجمعي 6 أختام واحصلي على خصم 50% 🎁
-      </div>
-
-      <div class="stamps-grid" id="stampsGrid"></div>
-
-      <div style="display:flex; justify-content:space-between; font-size:12px; color:var(--muted); margin-bottom:14px;">
-        <span>الرصيد الحالي: <strong id="stampCountDisplay" style="color:var(--gold-light);">0</strong> / 6</span>
-        <span>إجمالي زياراتك: <strong id="totalVisitsDisplay" style="color:#fff;">0</strong></span>
-      </div>
-
-      <button class="btn btn-gold" onclick="openCashierStampModal()">✨ ختم زيارة جديدة (للكاشير)</button>
-    </div>
-
-    <!-- Customer QR Card -->
-    <div class="card" style="text-align:center;">
-      <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:6px;">
-        <div class="logo-wrap" style="width:28px; height:28px;">
-          <img src="./IMG_9701.jpeg" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/hatmhamed867-cell/sense-salon/main/IMG_9701.jpeg'" alt="SENSE" />
-        </div>
-        <span style="font-weight:800; color:var(--gold-light); font-size:14px;">كود الـ QR الخاص بيكي</span>
-      </div>
-      <p style="font-size:12px; color:var(--muted); margin:0 0 10px;">اعرضي الكود ده للكاشير عند الحساب لإضافة الختم أو استخدام خصم 50%</p>
-      <div class="qr-box">
-        <div id="customerQr"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3. Booking Tab -->
-  <section id="tabBook" class="hidden">
-    <div class="card">
-      <h2 class="gold-text" style="margin:0 0 12px; font-size:18px;">حجز موعد جديد 📅</h2>
-      <label>اختاري الفرع</label>
-      <select id="bookBranch">
-        <option value="Mohandessin">فرع المهندسين (Mohandessin)</option>
-        <option value="Sheikh Zayed">فرع الشيخ زايد (Sheikh Zayed)</option>
-      </select>
-
-      <label>اختاري الخدمة</label>
-      <select id="bookService">
-        <option value="Brushing">Brushing</option>
-        <option value="Hair Treatment">Hair Treatment</option>
-        <option value="Highlights">Highlights</option>
-        <option value="Dye">Dye</option>
-        <option value="Haircut">Haircut</option>
-        <option value="Nails - Manicure">Nails - Manicure</option>
-        <option value="Nails - Pedicure">Nails - Pedicure</option>
-        <option value="Nails - Gel / Acrylic">Nails - Gel / Acrylic</option>
-        <option value="Hair Mask">Hair Mask</option>
-      </select>
-
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-        <div>
-          <label>التاريخ</label>
-          <input id="bookDate" type="date" />
-        </div>
-        <div>
-          <label>الموعد</label>
-          <select id="bookTime">
-            <option value="12:00 PM">12:00 PM</option>
-            <option value="01:00 PM">01:00 PM</option>
-            <option value="02:00 PM">02:00 PM</option>
-            <option value="03:00 PM">03:00 PM</option>
-            <option value="04:00 PM">04:00 PM</option>
-            <option value="05:00 PM">05:00 PM</option>
-            <option value="06:00 PM">06:00 PM</option>
-            <option value="07:00 PM">07:00 PM</option>
-            <option value="08:00 PM">08:00 PM</option>
-            <option value="09:00 PM">09:00 PM</option>
-          </select>
-        </div>
-      </div>
-
-      <button class="btn btn-gold" onclick="submitBooking()">تأكيد الحجز ✨</button>
-    </div>
-
-    <div class="card">
-      <h3 style="margin:0 0 10px; font-size:15px; color:var(--gold-light);">حجوزاتك المسجلة</h3>
-      <div id="myBookingsList"><div style="color:var(--muted); font-size:13px;">جاري التحميل...</div></div>
-    </div>
-  </section>
-
-  <!-- 4. Visits History Tab -->
-  <section id="tabHistory" class="hidden">
-    <div class="card">
-      <h2 class="gold-text" style="margin:0 0 12px; font-size:18px;">سجل زياراتك 💎</h2>
-      <div id="myVisitsList"><div style="color:var(--muted); font-size:13px;">جاري التحميل...</div></div>
-    </div>
-  </section>
-</main>
-
-<!-- Bottom Navigation -->
-<nav id="bottomNav" class="bottom-nav hidden">
-  <button class="nav-item active" onclick="switchTab('tabWallet', this)">
-    <span class="ico">👑</span><span>كارتي</span>
-  </button>
-  <button class="nav-item" onclick="switchTab('tabBook', this)">
-    <span class="ico">📅</span><span>حجز موعد</span>
-  </button>
-  <button class="nav-item" onclick="switchTab('tabHistory', this)">
-    <span class="ico">📜</span><span>زياراتي</span>
-  </button>
-</nav>
-
-<!-- Cashier Stamp Modal -->
-<div id="stampModal" class="modal-backdrop">
-  <div class="modal-sheet">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-      <h3 class="gold-text" style="margin:0;">اعتماد ختم الكاشير 🔒</h3>
-      <button class="icon-btn" onclick="closeModal('stampModal')">إغلاق</button>
-    </div>
-
-    <label>رقم موبايل العميلة</label>
-    <input id="stampPhoneInput" type="tel" placeholder="01XXXXXXXXX" />
-
-    <label>الفرع</label>
-    <select id="stampBranch">
-      <option value="Mohandessin">Mohandessin (المهندسين)</option>
-      <option value="Sheikh Zayed">Sheikh Zayed (الشيخ زايد)</option>
-    </select>
-
-    <label>الخدمات المقدمة</label>
-    <div class="chips" id="stampServicesChips"></div>
-
-    <label>ملاحظات (اختياري)</label>
-    <input id="stampNotes" type="text" placeholder="مثال: اسم المصفف أو تفاصيل إضافية" />
-
-    <label>كلمة سر الكاشير (للشركاء)</label>
-    <input id="stampPassInput" type="password" inputmode="numeric" placeholder="أدخل الباسورد 188200" />
-
-    <div style="display:grid; gap:10px; margin-top:6px;">
-      <button class="btn btn-gold" onclick="confirmCashierStamp(false)">✅ إضافة +1 ختم</button>
-      <button class="btn btn-success" onclick="confirmCashierStamp(true)">🎁 استبدال خصم 50% وتصفير الكارت</button>
-    </div>
-  </div>
-</div>
-
-<!-- Admin Dashboard Modal -->
-<div id="adminModal" class="modal-backdrop">
-  <div class="modal-sheet">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-      <h3 class="gold-text" style="margin:0;">لوحة إدارة الشركاء 👑</h3>
-      <button class="icon-btn" onclick="closeModal('adminModal')">إغلاق</button>
-    </div>
-
-    <!-- Admin Auth Gate -->
-    <div id="adminAuthBox">
-      <label>كلمة سر الإدارة الموحدة</label>
-      <input id="adminPassInput" type="password" inputmode="numeric" placeholder="••••••" />
-      <button class="btn btn-gold" onclick="unlockAdmin()">فتح لوحة الإدارة 🔓</button>
-    </div>
-
-    <!-- Admin Content -->
-    <div id="adminContent" class="hidden">
-      <div class="stats-row">
-        <div class="stat-box"><div class="stat-val" id="statCustomers">0</div><div class="stat-lbl">إجمالي العميلات</div></div>
-        <div class="stat-box"><div class="stat-val" id="statVisits">0</div><div class="stat-lbl">إجمالي الزيارات</div></div>
-        <div class="stat-box"><div class="stat-val" id="statPending">0</div><div class="stat-lbl">حجوزات قيد الانتظار</div></div>
-        <div class="stat-box"><div class="stat-val" id="statRewards">0</div><div class="stat-lbl">عميلات جاهزات لخصم 50%</div></div>
-      </div>
-
-      <div class="chips">
-        <span class="chip selected" onclick="switchAdminTab('admStamp', this)">⚡ ختم سريع</span>
-        <span class="chip" onclick="switchAdminTab('admBookings', this)">📅 الحجوزات</span>
-        <span class="chip" onclick="switchAdminTab('admCustomers', this)">👥 العميلات</span>
-        <span class="chip" onclick="switchAdminTab('admQr', this)">📲 QR الكاشير</span>
-      </div>
-
-      <!-- Quick Stamp -->
-      <div id="admStamp">
-        <label>بحث برقم الموبايل</label>
-        <div style="display:flex; gap:8px; margin-bottom:10px;">
-          <input id="admSearchPhone" type="tel" placeholder="01XXXXXXXXX" style="margin:0;" />
-          <button class="btn btn-gold" style="width:auto; padding:0 16px;" onclick="adminFindCustomer()">بحث</button>
-        </div>
-        <div id="admCustomerResult"></div>
-      </div>
-
-      <!-- Bookings List -->
-      <div id="admBookings" class="hidden"></div>
-
-      <!-- Customers List -->
-      <div id="admCustomers" class="hidden"></div>
-
-      <!-- Salon Cashier QR -->
-      <div id="admQr" class="hidden" style="text-align:center;">
-        <p style="font-size:13px; color:var(--muted);">صوّري الكود ده واطبعيه على الكاشير عشان أي عميلة تمسحه وتدخل علطول:</p>
-        <div class="qr-box"><div id="salonDeskQr"></div></div>
-        <div id="salonUrlText" style="font-size:11px; color:var(--gold-light); word-break:break-all; margin-top:8px;"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-  const SUPABASE_URL = 'https://asvdlhjfpekoivbsucbl.supabase.co';
-  const SUPABASE_KEY = 'sb_publishable_k6P8bSzkDS7_U_BzZGJRMA_Sy5uWvZG';
-  const ADMIN_PASS = '188200';
-  const SERVICES = [
-    'Brushing', 'Hair Treatment', 'Highlights', 'Dye',
-    'Haircut', 'Nails - Manicure', 'Nails - Pedicure',
-    'Nails - Gel / Acrylic', 'Hair Mask'
-  ];
-
-  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-  let currentCustomer = null;
-  let adminUnlocked = false;
-  let selectedServices = new Set(['Brushing']);
-
-  function normalizeDigits(str) {
-    return (str || '').replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/\s+/g, '').trim();
-  }
-
-  function esc(str) {
-    return String(str || '').replace(/[&<>"']/g, m => ({
-      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-    }[m]));
-  }
-
-  function showToast(msg) {
-    const el = document.getElementById('toast');
-    el.textContent = msg;
-    el.style.display = 'block';
-    clearTimeout(window._t);
-    window._t = setTimeout(() => { el.style.display = 'none'; }, 3200);
-  }
-
-  function closeModal(id) { document.getElementById(id).classList.remove('open'); }
-
-  function renderServiceChips() {
-    const wrap = document.getElementById('stampServicesChips');
-    wrap.innerHTML = '';
-    SERVICES.forEach(s => {
-      const chip = document.createElement('span');
-      chip.className = 'chip' + (selectedServices.has(s) ? ' selected' : '');
-      chip.textContent = s;
-      chip.onclick = () => {
-        if (selectedServices.has(s)) selectedServices.delete(s);
-        else selectedServices.add(s);
-        renderServiceChips();
-      };
-      wrap.appendChild(chip);
-    });
-  }
-
-  async function handleLogin() {
-    const phone = normalizeDigits(document.getElementById('loginPhone').value);
-    const nameInput = document.getElementById('loginName').value.trim();
-    if (!phone || phone.length < 8) return showToast('من فضلك اكتبي رقم موبايل صحيح');
-
-    const btn = document.getElementById('loginBtn');
-    btn.disabled = true;
-    btn.textContent = 'جاري الدخول...';
-
-    try {
-      let { data: cust, error } = await sb.from('customers').select('*').eq('phone', phone).maybeSingle();
-      if (error) throw error;
-
-      if (!cust) {
-        if (!nameInput) {
-          btn.disabled = false;
-          btn.textContent = 'دخول / فتح الكارت ✨';
-          return showToast('أهلاً بيكي! اكتبي اسمك لإنشاء كارتك الجديد');
-        }
-        const { data: created, error: insErr } = await sb.from('customers')
-          .insert({ phone, name: nameInput, stamps: 0, total_visits: 0 })
-          .select().single();
-        if (insErr) throw insErr;
-        cust = created;
-      }
-
-      currentCustomer = cust;
-      localStorage.setItem('sense_phone', phone);
-      enterApp();
-    } catch (e) {
-      showToast('تعذر الاتصال، تأكدي من الإنترنت وحاولي تاني');
-    } finally {
-      btn.disabled = false;
-      btn.textContent = 'دخول / فتح الكارت ✨';
-    }
-  }
-
-  function enterApp() {
-    document.getElementById('loginView').classList.add('hidden');
-    document.getElementById('appHeader').classList.remove('hidden');
-    document.getElementById('bottomNav').classList.remove('hidden');
-    switchTab('tabWallet', document.querySelector('.nav-item'));
-    renderWallet();
-    loadMyBookings();
-    loadMyVisits();
-  }
-
-  function logoutCustomer() {
-    localStorage.removeItem('sense_phone');
-    currentCustomer = null;
-    document.getElementById('appHeader').classList.add('hidden');
-    document.getElementById('bottomNav').classList.add('hidden');
-    document.getElementById('tabWallet').classList.add('hidden');
-    document.getElementById('tabBook').classList.add('hidden');
-    document.getElementById('tabHistory').classList.add('hidden');
-    document.getElementById('loginView').classList.remove('hidden');
-  }
-
-  function switchTab(tabId, btn) {
-    ['tabWallet', 'tabBook', 'tabHistory'].forEach(id => document.getElementById(id).classList.add('hidden'));
-    document.getElementById(tabId).classList.remove('hidden');
-    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-    if (btn) btn.classList.add('active');
-    if (tabId === 'tabBook') loadMyBookings();
-    if (tabId === 'tabHistory') loadMyVisits();
-  }
-
-  function renderWallet() {
-    if (!currentCustomer) return;
-    document.getElementById('headerUser').textContent = currentCustomer.name;
-    document.getElementById('custNameDisplay').textContent = currentCustomer.name;
-    document.getElementById('custPhoneDisplay').textContent = currentCustomer.phone;
-    document.getElementById('stampCountDisplay').textContent = currentCustomer.stamps;
-    document.getElementById('totalVisitsDisplay').textContent = currentCustomer.total_visits;
-
-    const banner = document.getElementById('rewardBanner');
-    if (currentCustomer.stamps >= 6) {
-      banner.className = 'reward-banner reward-ready';
-      banner.textContent = '🎉 مبروك! كارتك اكتمل — ليكي خصم 50% جاهز للاستخدام عند الكاشير!';
-    } else {
-      banner.className = 'reward-banner';
-      banner.textContent = `باقي ${6 - currentCustomer.stamps} أختام وتحصلي على خصم 50% 🎁`;
-    }
-
-    const grid = document.getElementById('stampsGrid');
-    grid.innerHTML = '';
-    for (let i = 1; i <= 6; i++) {
-      const filled = i <= currentCustomer.stamps;
-      const slot = document.createElement('div');
-      slot.className = 'stamp-slot' + (filled ? ' filled' : '');
-      slot.innerHTML = filled
-        ? `<div class="stamp-icon">👑</div><div class="stamp-num" style="color:var(--gold-light)">ختم ${i}</div>`
-        : `<div class="stamp-icon" style="opacity:0.25">✨</div><div class="stamp-num">${i === 6 ? '50% OFF' : 'ختم ' + i}</div>`;
-      grid.appendChild(slot);
-    }
-
-    const qrWrap = document.getElementById('customerQr');
-    qrWrap.innerHTML = '';
-    const baseUrl = window.location.href.split('?')[0];
-    new QRCode(qrWrap, {
-      text: `${baseUrl}?phone=${encodeURIComponent(currentCustomer.phone)}&cashier=1`,
-      width: 150,
-      height: 150,
-      colorDark: '#000000',
-      colorLight: '#ffffff'
-    });
-  }
-
-  function openCashierStampModal(prefillPhone) {
-    renderServiceChips();
-    document.getElementById('stampPhoneInput').value = prefillPhone || (currentCustomer ? currentCustomer.phone : '');
-    document.getElementById('stampPassInput').value = '';
-    document.getElementById('stampNotes').value = '';
-    document.getElementById('stampModal').classList.add('open');
-  }
-
-  async function confirmCashierStamp(redeem) {
-    const pass = normalizeDigits(document.getElementById('stampPassInput').value);
-    if (pass !== ADMIN_PASS) return showToast('كلمة سر الكاشير غير صحيحة');
-
-    const phone = normalizeDigits(document.getElementById('stampPhoneInput').value);
-    const branch = document.getElementById('stampBranch').value;
-    const notes = document.getElementById('stampNotes').value.trim();
-    const servicesArr = Array.from(selectedServices);
-    if (!phone) return showToast('اكتب رقم موبايل العميلة');
-    if (!redeem && servicesArr.length === 0) return showToast('اختار خدمة واحدة على الأقل');
-
-    const { data: cust, error } = await sb.from('customers').select('*').eq('phone', phone).maybeSingle();
-    if (error || !cust) return showToast('العميلة غير مسجلة بعد — خليها تسجل رقمها الأول');
-
-    if (redeem && cust.stamps < 6) return showToast('الكارت لم يكتمل 6 أختام بعد');
-
-    const newStamps = redeem ? 0 : Math.min(6, cust.stamps + 1);
-    const newVisits = cust.total_visits + 1;
-
-    const { data: updated, error: upErr } = await sb.from('customers')
-      .update({ stamps: newStamps, total_visits: newVisits })
-      .eq('phone', phone).select().single();
-    if (upErr) return showToast('حصل خطأ في تحديث الأختام');
-
-    await sb.from('visits').insert({
-      phone,
-      customer_name: cust.name,
-      branch,
-      services: redeem ? '50% Discount Redeemed' : servicesArr.join(', '),
-      notes,
-      stamped_by: 'Partner'
-    });
-
-    if (currentCustomer && currentCustomer.phone === phone) {
-      currentCustomer = updated;
-      renderWallet();
-      loadMyVisits();
-    }
-    closeModal('stampModal');
-    showToast(redeem ? '🎉 تم استبدال خصم 50% وتصفير الكارت' : '✅ تم إضافة الختم بنجاح');
-    if (adminUnlocked) refreshAdminData();
-  }
-
-  async function submitBooking() {
-    if (!currentCustomer) return;
-    const branch = document.getElementById('bookBranch').value;
-    const service = document.getElementById('bookService').value;
-    const booking_date = document.getElementById('bookDate').value;
-    const booking_time = document.getElementById('bookTime').value;
-    if (!booking_date) return showToast('اختاري تاريخ الحجز');
-
-    const { error } = await sb.from('bookings').insert({
-      phone: currentCustomer.phone,
-      customer_name: currentCustomer.name,
-      branch,
-      service,
-      booking_date,
-      booking_time,
-      status: 'Pending'
-    });
-    if (error) return showToast('تعذر إرسال الحجز');
-
-    showToast('✅ تم إرسال طلب الحجز بنجاح');
-    loadMyBookings();
-  }
-
-  async function loadMyBookings() {
-    if (!currentCustomer) return;
-    const { data } = await sb.from('bookings').select('*')
-      .eq('phone', currentCustomer.phone).order('id', { ascending: false }).limit(15);
-    const box = document.getElementById('myBookingsList');
-    if (!data || data.length === 0) {
-      box.innerHTML = '<div style="color:var(--muted); font-size:13px;">مفيش حجوزات مسجلة لسه.</div>';
-      return;
-    }
-    box.innerHTML = data.map(b => `
-      <div class="list-item">
-        <div style="display:flex; justify-content:space-between; align-items:center;">
-          <strong style="color:var(--gold-light);">${esc(b.service)}</strong>
-          <span class="badge ${b.status === 'Confirmed' ? 'b-confirmed' : b.status === 'Cancelled' ? 'b-cancelled' : 'b-pending'}">${esc(b.status)}</span>
-        </div>
-        <div style="font-size:12px; color:var(--muted); margin-top:4px;">
-          📍 ${esc(b.branch)} • 🗓 ${esc(b.booking_date)} • ⏰ ${esc(b.booking_time)}
-        </div>
-      </div>
-    `).join('');
-  }
-
-  async function loadMyVisits() {
-    if (!currentCustomer) return;
-    const { data } = await sb.from('visits').select('*')
-      .eq('phone', currentCustomer.phone).order('id', { ascending: false }).limit(20);
-    const box = document.getElementById('myVisitsList');
-    if (!data || data.length === 0) {
-      box.innerHTML = '<div style="color:var(--muted); font-size:13px;">لسه مفيش زيارات مسجلة.</div>';
-      return;
-    }
-    box.innerHTML = data.map(v => `
-      <div class="list-item">
-        <div style="display:flex; justify-content:space-between;">
-          <strong style="color:var(--gold-light);">${esc(v.services)}</strong>
-          <span style="font-size:11px; color:var(--muted);">${new Date(v.created_at).toLocaleDateString('ar-EG')}</span>
-        </div>
-        <div style="font-size:12px; color:var(--muted); margin-top:4px;">📍 ${esc(v.branch)} ${v.notes ? '• ' + esc(v.notes) : ''}</div>
-      </div>
-    `).join('');
-  }
-
-  // Admin Dashboard
-  function openAdminModal() {
-    document.getElementById('adminModal').classList.add('open');
-    if (adminUnlocked) refreshAdminData();
-  }
-
-  function unlockAdmin() {
-    const pass = normalizeDigits(document.getElementById('adminPassInput').value);
-    if (pass !== ADMIN_PASS) return showToast('كلمة السر غير صحيحة');
-    adminUnlocked = true;
-    document.getElementById('adminAuthBox').classList.add('hidden');
-    document.getElementById('adminContent').classList.remove('hidden');
-    refreshAdminData();
-    renderSalonDeskQr();
-  }
-
-  function switchAdminTab(id, el) {
-    ['admStamp', 'admBookings', 'admCustomers', 'admQr'].forEach(t => document.getElementById(t).classList.add('hidden'));
-    document.getElementById(id).classList.remove('hidden');
-    el.parentElement.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
-    el.classList.add('selected');
-  }
-
-  async function refreshAdminData() {
-    const [{ data: custs }, { data: visits }, { data: books }] = await Promise.all([
-      sb.from('customers').select('*').order('created_at', { ascending: false }),
-      sb.from('visits').select('id'),
-      sb.from('bookings').select('*').order('id', { ascending: false }).limit(40)
-    ]);
-
-    const cList = custs || [];
-    const bList = books || [];
-    document.getElementById('statCustomers').textContent = cList.length;
-    document.getElementById('statVisits').textContent = (visits || []).length;
-    document.getElementById('statPending').textContent = bList.filter(b => b.status === 'Pending').length;
-    document.getElementById('statRewards').textContent = cList.filter(c => c.stamps >= 6).length;
-
-    document.getElementById('admCustomers').innerHTML = cList.map(c => `
-      <div class="list-item" style="display:flex; justify-content:space-between; align-items:center;">
-        <div>
-          <strong style="color:var(--gold-light);">${esc(c.name)}</strong>
-          <div style="font-size:12px; color:var(--muted);">${esc(c.phone)} • زيارات: ${c.total_visits}</div>
-        </div>
-        <div style="text-align:left;">
-          <span class="badge ${c.stamps >= 6 ? 'b-confirmed' : 'b-pending'}">${c.stamps} / 6 أختام</span>
-          <div style="margin-top:6px;">
-            <button class="icon-btn" style="padding:4px 8px; font-size:11px;" onclick="closeModal('adminModal'); openCashierStampModal('${esc(c.phone)}')">ختم</button>
-          </div>
-        </div>
-      </div>
-    `).join('') || '<div style="color:var(--muted); font-size:13px;">لا توجد عميلات بعد</div>';
-
-    document.getElementById('admBookings').innerHTML = bList.map(b => `
-      <div class="list-item">
-        <div style="display:flex; justify-content:space-between;">
-          <strong style="color:var(--gold-light);">${esc(b.customer_name)} (${esc(b.phone)})</strong>
-          <span class="badge ${b.status === 'Confirmed' ? 'b-confirmed' : b.status === 'Cancelled' ? 'b-cancelled' : 'b-pending'}">${esc(b.status)}</span>
-        </div>
-        <div style="font-size:12px; color:#ddd; margin:4px 0;">${esc(b.service)} — 📍 ${esc(b.branch)}</div>
-        <div style="font-size:12px; color:var(--muted); margin-bottom:8px;">🗓 ${esc(b.booking_date)} • ⏰ ${esc(b.booking_time)}</div>
-        <div style="display:flex; gap:6px;">
-          <button class="btn btn-success" style="padding:7px; font-size:12px;" onclick="updateBookingStatus(${b.id}, 'Confirmed')">تأكيد</button>
-          <button class="btn btn-danger" style="padding:7px; font-size:12px;" onclick="updateBookingStatus(${b.id}, 'Cancelled')">إلغاء</button>
-        </div>
-      </div>
-    `).join('') || '<div style="color:var(--muted); font-size:13px;">لا توجد حجوزات</div>';
-  }
-
-  async function adminFindCustomer() {
-    const phone = normalizeDigits(document.getElementById('admSearchPhone').value);
-    if (!phone) return;
-    const { data: c } = await sb.from('customers').select('*').eq('phone', phone).maybeSingle();
-    const box = document.getElementById('admCustomerResult');
-    if (!c) {
-      box.innerHTML = '<div class="list-item" style="color:#ff9a9a;">الرقم غير مسجل بعد.</div>';
-      return;
-    }
-    box.innerHTML = `
-      <div class="list-item">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-          <div>
-            <strong style="color:var(--gold-light); font-size:16px;">${esc(c.name)}</strong>
-            <div style="font-size:12px; color:var(--muted);">${esc(c.phone)}</div>
-          </div>
-          <span class="badge ${c.stamps >= 6 ? 'b-confirmed' : 'b-pending'}">${c.stamps} / 6 أختام</span>
-        </div>
-        <button class="btn btn-gold" onclick="closeModal('adminModal'); openCashierStampModal('${esc(c.phone)}')">
-          ⚡ فتح شاشة الختم / استبدال 50%
-        </button>
-      </div>
-    `;
-  }
-
-  async function updateBookingStatus(id, status) {
-    await sb.from('bookings').update({ status }).eq('id', id);
-    showToast('تم تحديث حالة الحجز');
-    refreshAdminData();
-  }
-
-  function renderSalonDeskQr() {
-    const wrap = document.getElementById('salonDeskQr');
-    wrap.innerHTML = '';
-    const appUrl = window.location.href.split('?')[0];
-    document.getElementById('salonUrlText').textContent = appUrl;
-    new QRCode(wrap, { text: appUrl, width: 170, height: 170 });
-  }
-
-  // Init on Load
-  (async function init() {
-    document.getElementById('bookDate').value = new Date().toISOString().split('T')[0];
-    const savedPhone = localStorage.getItem('sense_phone');
-    const params = new URLSearchParams(window.location.search);
-    const qrPhone = params.get('phone');
-    const isCashierScan = params.get('cashier') === '1';
-
-    if (savedPhone) {
-      const { data: cust } = await sb.from('customers').select('*').eq('phone', savedPhone).maybeSingle();
-      if (cust) {
-        currentCustomer = cust;
-        enterApp();
-      }
-    }
-    if (qrPhone && isCashierScan) {
-      openCashierStampModal(normalizeDigits(qrPhone));
-    }
-  })();
-</script>
-</body>
-</html>
+        <img src="./IMG_9701.jpeg" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/hatmhamed867-cell/sense-salon/main/IMG_9701.jpeg'" alt="SENSE Beauty Salon
