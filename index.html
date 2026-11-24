@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+<meta name="theme-color" content="#050505" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Sense Salon" />
+<link rel="apple-touch-icon" href="./IMG_9701.jpeg" />
+<link rel="icon" type="image/jpeg" href="./IMG_9701.jpeg" />
+<title>Sense Salon | سينس صالون</title>
+<meta property="og:title" content="Sense Salon | سينس صالون" />
+<meta property="og:site_name" content="Sense Salon" />
+<meta property="og:description" content="كارت الولاء الرقمي وحجز المواعيد — اجمعي 6 أختام واحصلي على خصم 50%" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://sense-salon.github.io/sense-salon/" />
+<meta property="og:image" content="https://sense-salon.github.io/sense-salon/IMG_9701.jpeg" />
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+<style>
+:root{--bg:#050505;--card:#111;--card2:#181818;--gold:#d4af37;--gold2:#f3d98b;--dim:rgba(212,175,55,.22);--border:rgba(212,175,55,.28);--txt:#f5f5f5;--muted:#9e9e9e;--danger:#e05252;--ok:#38b778}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:radial-gradient(circle at top,#171206 0%,#050505 48%);color:var(--txt);font-family:'Cairo',sans-serif;min-height:100vh;padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+.en{font-family:'Playfair Display',serif;letter-spacing:.6px}
+.container{max-width:480px;margin:0 auto;padding:16px}
+.logo-wrap{background:#000;border-radius:50%;border:1.5px solid var(--border);overflow:hidden;display:flex;align-items:center;justify-content:center;box-shadow:0 0 28px rgba(212,175,55,.16)}
+.logo-wrap img{width:100%;height:100%;object-fit:contain;display:block}
+.topbar{position:sticky;top:0;z-index:30;background:rgba(5,5,5,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:calc(10px + env(safe-area-inset-top)) 16px 10px}
+.topbar-in{max-width:480px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand-mini{display:flex;align-items:center;gap:10px}
+.brand-mini .logo-wrap{width:42px;height:42px;flex-shrink:0}
+.brand-t{font-size:15px;font-weight:800;color:var(--gold2);line-height:1.2}
+.brand-s{font-size:11px;color:var(--muted)}
+.icon-btn{background:var(--card2);border:1px solid var(--border);color:var(--gold2);border-radius:12px;padding:8px 11px;font-size:13px;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:5px}
+.card{background:linear-gradient(160deg,#141414 0%,#0b0b0b 100%);border:1px solid var(--border);border-radius:20px;padding:18px;margin-bottom:14px;box-shadow:0 12px 32px rgba(0,0,0,.55)}
+.gold-t{background:linear-gradient(90deg,#d4af37,#f8e59d,#c59b27);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+label{display:block;font-size:12px;color:var(--gold2);margin-bottom:6px;font-weight:700}
+input,select{width:100%;background:#0a0a0a;border:1px solid rgba(212,175,55,.3);color:#fff;border-radius:12px;padding:12px 14px;font-size:14px;font-family:inherit;outline:none;margin-bottom:12px}
+input:focus,select:focus{border-color:var(--gold);box-shadow:0 0 0 2px var(--dim)}
+.btn{width:100%;border:none;border-radius:14px;padding:13px 16px;font-size:15px;font-weight:800;font-family:inherit;cursor:pointer}
+.btn:active{transform:scale(.98)}
+.btn-g{background:linear-gradient(135deg,#b88a1e 0%,#f1d47b 50%,#c89b2b 100%);color:#080808}
+.btn-o{background:transparent;border:1px solid var(--border);color:var(--gold2)}
+.btn-ok{background:var(--ok);color:#05140c}
+.btn-d{background:rgba(224,82,82,.15);border:1px solid var(--danger);color:#ff8e8e}
+.stamps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+.slot{aspect-ratio:1;border-radius:16px;border:1.5px dashed rgba(212,175,55,.35);background:#0a0a0a;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:.25s}
+.slot.filled{border-style:solid;border-color:var(--gold);background:radial-gradient(circle,rgba(212,175,55,.24) 0%,#0e0c05 100%);box-shadow:0 0 18px rgba(212,175,55,.22)}
+.s-num{font-size:12px;color:var(--muted);font-weight:700}
+.s-ico{font-size:26px;line-height:1;margin-bottom:4px}
+.banner{background:linear-gradient(135deg,rgba(212,175,55,.16),rgba(212,175,55,.04));border:1px solid var(--gold);border-radius:14px;padding:12px;text-align:center;font-size:13px;color:var(--gold2);font-weight:700}
+.banner.ready{background:linear-gradient(135deg,#b88a1e,#f1d47b);color:#050505;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(212,175,55,.5)}50%{box-shadow:0 0 0 10px rgba(212,175,55,0)}}
+.qr-box{background:#fff;padding:12px;border-radius:16px;display:inline-flex;margin:8px auto}
+.bnav{position:fixed;bottom:0;left:0;right:0;z-index:35;background:rgba(10,10,10,.96);backdrop-filter:blur(12px);border-top:1px solid var(--border);display:flex;justify-content:space-around;padding:8px 6px calc(8px + env(safe-area-inset-bottom))}
+.nav-i{background:none;border:none;color:var(--muted);font-family:inherit;font-size:11px;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:4px 12px}
+.nav-i.active{color:var(--gold2)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.chip{padding:7px 12px;border-radius:999px;border:1px solid var(--border);background:#0d0d0d;color:#ddd;font-size:12px;cursor:pointer;user-select:none}
+.chip.sel{background:var(--gold);color:#050505;font-weight:800;border-color:var(--gold)}
+.item{background:#0d0d0d;border:1px solid rgba(212,175,55,.18);border-radius:14px;padding:12px;margin-bottom:10px}
+.badge{display:inline-block;padding:3px 9px;border-radius:999px;font-size:11px;font-weight:700}
+.bp{background:rgba(212,175,55,.2);color:var(--gold2)}.bc{background:rgba(56,183,120,.2);color:#6be3a4}.bx{background:rgba(224,82,82,.2);color:#ff9a9a}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(6px);z-index:60;display:none;align-items:flex-end;justify-content:center}
+.modal.open{display:flex}
+.sheet{width:100%;max-width:480px;max-height:90vh;overflow-y:auto;background:#111;border-top:1.5px solid var(--gold);border-radius:24px 24px 0 0;padding:20px 18px calc(24px + env(safe-area-inset-bottom))}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}
+.stat{background:#0a0a0a;border:1px solid var(--border);border-radius:14px;padding:12px;text-align:center}
+.sval{font-size:22px;font-weight:800;color:var(--gold2)}.slbl{font-size:11px;color:var(--muted)}
+.hidden{display:none!important}
+.toast{position:fixed;top:calc(16px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);background:#1a1a1a;border:1px solid var(--gold);color:#fff;padding:10px 18px;border-radius:20px;font-size:13px;font-weight:700;z-index:90;box-shadow:0 8px 25px rgba(0,0,0,.7);display:none;max-width:92%;text-align:center;word-break:break-word}
+</style>
+</head>
+<body>
+<div id="toast" class="toast"></div>
+<header id="appHeader" class="topbar hidden">
+  <div class="topbar-in">
+    <div class="brand-mini">
+      <div class="logo-wrap"><img src="./IMG_9701.jpeg" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/sense-salon/sense-salon/main/IMG_9701.jpeg'" alt="SENSE" /></div>
+      <div><div class="brand-t en">SENSE Beauty Salon</div><div class="brand-s" id="headerUser">VIP Loyalty Club</div></div>
+    </div>
+    <div style="display:flex;gap:6px"><button class="icon-btn" onclick="openAdminModal()">🔒 الإدارة</button><button class="icon-btn" onclick="logoutCustomer()">خروج</button></div>
+  </div>
+</header>
+<main class="container">
+  <section id="loginView">
+    <div class="card" style="text-align:center;padding-top:26px">
+      <div class="logo-wrap" style="width:130px;height:130px;margin:0 auto 14px"><img src="./IMG_9701.jpeg" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/sense-salon/sense-salon/main/IMG_9701.jpeg'" alt="SENSE Logo" /></div>
+      <h1 class="en gold-t" style="margin:0;font-size:24px">SENSE Beauty Salon</h1>
+      <p style="color:var(--muted);font-size:13px;margin:6px 0 18px">كارت الولاء الرقمي وحجز المواعيد — اجمعي 6 أختام واحصلي على <strong style="color:var(--gold2)">خصم 50%</strong></p>
+      <div style="text-align:right">
+        <label>رقم الموبايل</label><input id="loginPhone" type="tel" inputmode="tel" placeholder="01XXXXXXXXX" />
+        <label>الاسم (للعميلات الجدد)</label><input id="loginName" type="text" placeholder="اكتبي اسمك بالكامل" />
+        <button class="btn btn-g" onclick="handleLogin()" id="loginBtn">دخول / فتح الكارت ✨</button>
+      </div>
+      <div style="margin-top:14px;border-top:1px solid rgba(255,255,255,.08);padding-top:12px">
+        <button class="btn btn-o" onclick="openAdminModal()" style="font-size:13px;padding:10px">🔒 دخول الشركاء والكاشير</button>
+      </div>
+    </div>
+  </section>
+  <section id="tabWallet" class="hidden">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div><div style="font-size:12px;color:var(--muted)">أهلاً بيكي،</div><div id="custNameDisplay" style="font-size:18px;font-weight:800;color:var(--gold2)">—</div><div id="custPhoneDisplay" style="font-size:12px;color:var(--muted)">—</div></div>
+        <div class="logo-wrap" style="width:54px;height:54px"><img src="./IMG_9701.jpeg" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/sense-salon/sense-salon/main/IMG_9701.jpeg'" alt="SENSE" /></div>
+      </div>
+      <div id="rewardBanner" class="banner">اجمعي 6 أختام واحصلي على خصم 50% 🎁</div>
+      <div class="stamps" id="stampsGrid"></div>
+      <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:14px">
+        <span>الرصيد الحالي: <strong id="stampCountDisplay" style="color:var(--gold2)">0</strong> / 6</span>
+        <span>إجمالي زياراتك: <strong id="totalVisitsDisplay" style="color:#fff">0</strong></span>
+      </div>
+      <button class="btn btn-g" onclick="openCashierStampModal()">✨ ختم زيارة جديدة (للكاشير)</button>
+    </div>
+    <div class="card" style="text-align:center">
+      <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:6px">
+        <div class="logo-wrap" style="width:28px;height:28px"><img src="./IMG_9701.jpeg" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/sense-salon/sense-salon/main/IMG_9701.jpeg'" alt="SENSE" /></div>
+        <span style="font-weight:800;color:var(--gold2);font-size:14px">كود الـ QR الخاص بيكي</span>
+      </div>
+      <p style="font-size:12px;color:var(--muted);margin:0 0 10px">اعرضي الكود ده للكاشير عند الحساب لإضافة الختم أو استخدام خصم 50%</p>
+      <div class="qr-box"><div id="customerQr"></div></div>
+    </div>
+  </section>
+  <section id="tabBook" class="hidden">
+    <div class="card">
+      <h2 class="gold-t" style="margin:0 0 12px;font-size:18px">حجز موعد جديد 📅</h2>
+      <label>اختاري الفرع</label>
+      <select id="bookBranch"><option value="Mohandessin">فرع المهندسين (Mohandessin)</option><option value="Sheikh Zayed">فرع الشيخ زايد (Sheikh Zayed)</option></select>
+      <label>اختاري الخدمة</label>
+      <select id="bookService"><option>Brushing</option><option>Hair Treatment</option><option>Highlights</option><option>Dye</option><option>Haircut</option><option>Nails - Manicure</option><option>Nails - Pedicure</option><option>Nails - Gel / Acrylic</option><option>Hair Mask</option></select>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div><label>التاريخ</label><input id="bookDate" type="date" /></div>
+        <div><label>الموعد</label><select id="bookTime"><option>12:00 PM</option><option>01:00 PM</option><option>02:00 PM</option><option>03:00 PM</option><option>04:00 PM</option><option>05:00 PM</option><option>06:00 PM</option><option>07:00 PM</option><option>08:00 PM</option><option>09:00 PM</option></select></div>
+      </div>
+      <button class="btn btn-g" onclick="submitBooking()">تأكيد الحجز ✨</button>
+    </div>
+    <div class="card"><h3 style="margin:0 0 10px;font-size:15px;color:var(--gold2)">حجوزاتك المسجلة</h3><div id="myBookingsList"></div></div>
+  </section>
+  <section id="tabHistory" class="hidden">
+    <div class="card"><h2 class="gold-t" style="margin:0 0 12px;font-size:18px">سجل زياراتك 💎</h2><div id="myVisitsList"></div></div>
+  </section>
+</main>
+<nav id="bottomNav" class="bnav hidden">
+  <button class="nav-i active" onclick="switchTab('tabWallet',this)"><span style="font-size:19px">👑</span><span>كارتي</span></button>
+  <button class="nav-i" onclick="switchTab('tabBook',this)"><span style="font-size:19px">📅</span><span>حجز موعد</span></button>
+  <button class="nav-i" onclick="switchTab('tabHistory',this)"><span style="font-size:19px">📜</span><span>زياراتي</span></button>
+</nav>
+<div id="stampModal" class="modal"><div class="sheet">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><h3 class="gold-t" style="margin:0">اعتماد ختم الكاشير 🔒</h3><button class="icon-btn" onclick="closeModal('stampModal')">إغلاق</button></div>
+  <label>رقم موبايل العميلة</label><input id="stampPhoneInput" type="tel" placeholder="01XXXXXXXXX" />
+  <label>الفرع</label><select id="stampBranch"><option value="Mohandessin">Mohandessin (المهندسين)</option><option value="Sheikh Zayed">Sheikh Zayed (الشيخ زايد)</option></select>
+  <label>الخدمات المقدمة</label><div class="chips" id="stampServicesChips"></div>
+  <label>ملاحظات (اختياري)</label><input id="stampNotes" type="text" placeholder="مثال: اسم المصفف أو تفاصيل إضافية" />
+  <label>كلمة سر الكاشير (للشركاء)</label><input id="stampPassInput" type="password" inputmode="numeric" placeholder="••••••" />
+  <div style="display:grid;gap:10px;margin-top:6px"><button class="btn btn-g" onclick="confirmCashierStamp(false)">✅ إضافة +1 ختم</button><button class="btn btn-ok" onclick="confirmCashierStamp(true)">🎁 استبدال خصم 50% وتصفير الكارت</button></div>
+</div></div>
+<div id="adminModal" class="modal"><div class="sheet">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><h3 class="gold-t" style="margin:0">لوحة إدارة الشركاء 👑</h3><button class="icon-btn" onclick="closeModal('adminModal')">إغلاق</button></div>
+  <div id="adminAuthBox"><label>كلمة سر الإدارة الموحدة</label><input id="adminPassInput" type="password" inputmode="numeric" placeholder="••••••" /><button class="btn btn-g" onclick="unlockAdmin()">فتح لوحة الإدارة 🔓</button></div>
+  <div id="adminContent" class="hidden">
+    <div class="stats">
+      <div class="stat"><div class="sval" id="statCustomers">0</div><div class="slbl">إجمالي العميلات</div></div>
+      <div class="stat"><div class="sval" id="statVisits">0</div><div class="slbl">إجمالي الزيارات</div></div>
+      <div class="stat"><div class="sval" id="statPending">0</div><div class="slbl">حجوزات قيد الانتظار</div></div>
+      <div class="stat"><div class="sval" id="statRewards">0</div><div class="slbl">عميلات جاهزات لخصم 50%</div></div>
+    </div>
+    <div class="chips">
+      <span class="chip sel" onclick="switchAdminTab('admStamp',this)">⚡ ختم سريع</span>
+      <span class="chip" onclick="switchAdminTab('admBookings',this)">📅 الحجوزات</span>
+      <span class="chip" onclick="switchAdminTab('admCustomers',this)">👥 العميلات</span>
+      <span class="chip" onclick="switchAdminTab('admQr',this)">📲 QR الكاشير</span>
+    </div>
+    <div id="admStamp">
+      <label>بحث برقم الموبايل</label>
+      <div style="display:flex;gap:8px;margin-bottom:10px"><input id="admSearchPhone" type="tel" placeholder="01XXXXXXXXX" style="margin:0" /><button class="btn btn-g" style="width:auto;padding:0 16px" onclick="adminFindCustomer()">بحث</button></div>
+      <div id="admCustomerResult"></div>
+    </div>
+    <div id="admBookings" class="hidden"></div>
+    <div id="admCustomers" class="hidden"></div>
+    <div id="admQr" class="hidden" style="text-align:center"><p style="font-size:13px;color:var(--muted)">صوّري الكود ده واطبعيه على الكاشير عشان أي عميلة تمسحه وتدخل علطول:</p><div class="qr-box"><div id="salonDeskQr"></div></div><div id="salonUrlText" style="font-size:11px;color:var(--gold2);word-break:break-all;margin-top:8px"></div></div>
+  </div>
+</div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<script>
+const SUPABASE_URL='https://asvdlhjfpekoivbsucbl.supabase.co';
+const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFzdmRsaGpmcGVrb2l2YnN1Y2JsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTU0NTkxNzQsImV4cCI6MjExMTAzNTE3NH0.je4OE68Lg0uA4-LBQvA_R9j6J9i37RecDoXC7t3z7Qg';
+const ADMIN_PASS='188200';
+const SERVICES=['Brushing','Hair Treatment','Highlights','Dye','Haircut','Nails - Manicure','Nails - Pedicure','Nails - Gel / Acrylic','Hair Mask'];
+const sb=window.supabase?window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY):null;
+let currentCustomer=null,adminUnlocked=false,selectedServices=new Set(['Brushing']);
+const $=id=>document.getElementById(id);
+const norm=s=>(s||'').replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/\s+/g,'').trim();
+const esc=s=>String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+function showToast(m,d=3500){const e=$('toast');e.textContent=m;e.style.display='block';clearTimeout(window._t);window._t=setTimeout(()=>e.style.display='none',d);}
+function closeModal(id){$(id).classList.remove('open');}
+function renderChips(){const w=$('stampServicesChips');w.innerHTML='';SERVICES.forEach(s=>{const c=document.createElement('span');c.className='chip'+(selectedServices.has(s)?' sel':'');c.textContent=s;c.onclick=()=>{selectedServices.has(s)?selectedServices.delete(s):selectedServices.add(s);renderChips();};w.appendChild(c);});}
+async function handleLogin(){
+  if(!sb)return showToast('مكتبة الاتصال محملتش، اتأكد من النت واعمل Refresh',5000);
+  const phone=norm($('loginPhone').value),name=$('loginName').value.trim();
+  if(!phone||phone.length<8)return showToast('من فضلك اكتبي رقم موبايل صحيح');
+  const btn=$('loginBtn');btn.disabled=true;btn.textContent='جاري الدخول...';
+  try{
+    let{data:cust,error}=await sb.from('customers').select('*').eq('phone',phone).maybeSingle();
+    if(error)throw error;
+    if(!cust){
+      if(!name){btn.disabled=false;btn.textContent='دخول / فتح الكارت ✨';return showToast('أهلاً بيكي! اكتبي اسمك لإنشاء كارتك الجديد');}
+      const{data:cr,error:ie}=await sb.from('customers').insert({phone,name,stamps:0,total_visits:0}).select().single();
+      if(ie)throw ie;cust=cr;
+    }
+    currentCustomer=cust;localStorage.setItem('sense_phone',phone);enterApp();
+  }catch(e){showToast('خطأ: '+((e&&(e.message||e.error_description))||'تأكدي من الإنترنت وحاولي تاني'),6000);}
+  finally{btn.disabled=false;btn.textContent='دخول / فتح الكارت ✨';}
+}
+function enterApp(){$('loginView').classList.add('hidden');$('appHeader').classList.remove('hidden');$('bottomNav').classList.remove('hidden');switchTab('tabWallet',document.querySelector('.nav-i'));renderWallet();loadMyBookings();loadMyVisits();}
+function logoutCustomer(){localStorage.removeItem('sense_phone');currentCustomer=null;['appHeader','bottomNav','tabWallet','tabBook','tabHistory'].forEach(i=>$(i).classList.add('hidden'));$('loginView').classList.remove('hidden');}
+function switchTab(t,b){['tabWallet','tabBook','tabHistory'].forEach(i=>$(i).classList.add('hidden'));$(t).classList.remove('hidden');document.querySelectorAll('.nav-i').forEach(e=>e.classList.remove('active'));if(b)b.classList.add('active');if(t==='tabBook')loadMyBookings();if(t==='tabHistory')loadMyVisits();}
+function renderWallet(){
+  if(!currentCustomer)return;
+  $('headerUser').textContent=currentCustomer.name;$('custNameDisplay').textContent=currentCustomer.name;$('custPhoneDisplay').textContent=currentCustomer.phone;$('stampCountDisplay').textContent=currentCustomer.stamps;$('totalVisitsDisplay').textContent=currentCustomer.total_visits;
+  const bn=$('rewardBanner');
+  if(currentCustomer.stamps>=6){bn.className='banner ready';bn.textContent='🎉 مبروك! كارتك اكتمل — ليكي خصم 50% جاهز للاستخدام عند الكاشير!';}
+  else{bn.className='banner';bn.textContent=`باقي ${6-currentCustomer.stamps} أختام وتحصلي على خصم 50% 🎁`;}
+  const g=$('stampsGrid');g.innerHTML='';
+  for(let i=1;i<=6;i++){const f=i<=currentCustomer.stamps,s=document.createElement('div');s.className='slot'+(f?' filled':'');s.innerHTML=f?`<div class="s-ico">👑</div><div class="s-num" style="color:var(--gold2)">ختم ${i}</div>`:`<div class="s-ico" style="opacity:.25">✨</div><div class="s-num">${i===6?'50% OFF':'ختم '+i}</div>`;g.appendChild(s);}
+  const q=$('customerQr');q.innerHTML='';
+  if(typeof QRCode!=='undefined')new QRCode(q,{text:`${location.href.split('?')[0]}?phone=${encodeURIComponent(currentCustomer.phone)}&cashier=1`,width:150,height:150});
+}
+function openCashierStampModal(p){renderChips();$('stampPhoneInput').value=p||(currentCustomer?currentCustomer.phone:'');$('stampPassInput').value='';$('stampNotes').value='';$('stampModal').classList.add('open');}
+async function confirmCashierStamp(redeem){
+  if(!sb)return showToast('مكتبة الاتصال محملتش، اعمل Refresh');
+  if(norm($('stampPassInput').value)!==ADMIN_PASS)return showToast('كلمة سر الكاشير غير صحيحة');
+  const phone=norm($('stampPhoneInput').value),branch=$('stampBranch').value,notes=$('stampNotes').value.trim(),sv=Array.from(selectedServices);
+  if(!phone)return showToast('اكتب رقم موبايل العميلة');if(!redeem&&!sv.length)return showToast('اختار خدمة واحدة على الأقل');
+  const{data:c,error}=await sb.from('customers').select('*').eq('phone',phone).maybeSingle();
+  if(error)return showToast('خطأ: '+error.message,5000);if(!c)return showToast('العميلة غير مسجلة بعد — خليها تسجل رقمها الأول');
+  if(redeem&&c.stamps<6)return showToast('الكارت لم يكتمل 6 أختام بعد');
+  const{data:u,error:ue}=await sb.from('customers').update({stamps:redeem?0:Math.min(6,c.stamps+1),total_visits:c.total_visits+1}).eq('phone',phone).select().single();
+  if(ue)return showToast('خطأ في التحديث: '+ue.message,5000);
+  const{error:ve}=await sb.from('visits').insert({phone,customer_name:c.name,branch,services:redeem?'50% Discount Redeemed':sv.join(', '),notes,stamped_by:'Partner'});
+  if(ve)return showToast('خطأ في حفظ الزيارة: '+ve.message,5000);
+  if(currentCustomer&&currentCustomer.phone===phone){currentCustomer=u;renderWallet();loadMyVisits();}
+  closeModal('stampModal');showToast(redeem?'🎉 تم استبدال خصم 50% وتصفير الكارت':'✅ تم إضافة الختم بنجاح');if(adminUnlocked)refreshAdminData();
+}
+async function submitBooking(){
+  if(!sb||!currentCustomer)return;const d=$('bookDate').value;if(!d)return showToast('اختاري تاريخ الحجز');
+  const{error}=await sb.from('bookings').insert({phone:currentCustomer.phone,customer_name:currentCustomer.name,branch:$('bookBranch').value,service:$('bookService').value,booking_date:d,booking_time:$('bookTime').value,status:'Pending'});
+  if(error)return showToast('تعذر إرسال الحجز: '+error.message,5000);showToast('✅ تم إرسال طلب الحجز بنجاح');loadMyBookings();
+}
+async function loadMyBookings(){
+  if(!sb||!currentCustomer)return;const{data}=await sb.from('bookings').select('*').eq('phone',currentCustomer.phone).order('id',{ascending:false}).limit(15);
+  $('myBookingsList').innerHTML=data&&data.length?data.map(b=>`<div class="item"><div style="display:flex;justify-content:space-between;align-items:center"><strong style="color:var(--gold2)">${esc(b.service)}</strong><span class="badge ${b.status==='Confirmed'?'bc':b.status==='Cancelled'?'bx':'bp'}">${esc(b.status)}</span></div><div style="font-size:12px;color:var(--muted);margin-top:4px">📍 ${esc(b.branch)} • 🗓 ${esc(b.booking_date)} • ⏰ ${esc(b.booking_time)}</div></div>`).join(''):'<div style="color:var(--muted);font-size:13px">مفيش حجوزات مسجلة لسه.</div>';
+}
+async function loadMyVisits(){
+  if(!sb||!currentCustomer)return;const{data}=await sb.from('visits').select('*').eq('phone',currentCustomer.phone).order('id',{ascending:false}).limit(20);
+  $('myVisitsList').innerHTML=data&&data.length?data.map(v=>`<div class="item"><div style="display:flex;justify-content:space-between"><strong style="color:var(--gold2)">${esc(v.services)}</strong><span style="font-size:11px;color:var(--muted)">${new Date(v.created_at).toLocaleDateString('ar-EG')}</span></div><div style="font-size:12px;color:var(--muted);margin-top:4px">📍 ${esc(v.branch)} ${v.notes?'• '+esc(v.notes):''}</div></div>`).join(''):'<div style="color:var(--muted);font-size:13px">لسه مفيش زيارات مسجلة.</div>';
+}
+function openAdminModal(){$('adminModal').classList.add('open');if(adminUnlocked)refreshAdminData();}
+function unlockAdmin(){if(!sb)return showToast('مكتبة الاتصال محملتش، اعمل Refresh');if(norm($('adminPassInput').value)!==ADMIN_PASS)return showToast('كلمة السر غير صحيحة');adminUnlocked=true;$('adminAuthBox').classList.add('hidden');$('adminContent').classList.remove('hidden');refreshAdminData();renderDeskQr();}
+function switchAdminTab(id,el){['admStamp','admBookings','admCustomers','admQr'].forEach(t=>$(t).classList.add('hidden'));$(id).classList.remove('hidden');el.parentElement.querySelectorAll('.chip').forEach(c=>c.classList.remove('sel'));el.classList.add('sel');}
+async function refreshAdminData(){
+  if(!sb)return;const[{data:cs},{data:vs},{data:bs}]=await Promise.all([sb.from('customers').select('*').order('created_at',{ascending:false}),sb.from('visits').select('id'),sb.from('bookings').select('*').order('id',{ascending:false}).limit(40)]);
+  const c=cs||[],b=bs||[];$('statCustomers').textContent=c.length;$('statVisits').textContent=(vs||[]).length;$('statPending').textContent=b.filter(x=>x.status==='Pending').length;$('statRewards').textContent=c.filter(x=>x.stamps>=6).length;
+  $('admCustomers').innerHTML=c.map(x=>`<div class="item" style="display:flex;justify-content:space-between;align-items:center"><div><strong style="color:var(--gold2)">${esc(x.name)}</strong><div style="font-size:12px;color:var(--muted)">${esc(x.phone)} • زيارات: ${x.total_visits}</div></div><div style="text-align:left"><span class="badge ${x.stamps>=6?'bc':'bp'}">${x.stamps} / 6 أختام</span><div style="margin-top:6px"><button class="icon-btn" style="padding:4px 8px;font-size:11px" onclick="closeModal('adminModal');openCashierStampModal('${esc(x.phone)}')">ختم</button></div></div></div>`).join('')||'<div style="color:var(--muted);font-size:13px">لا توجد عميلات بعد</div>';
+  $('admBookings').innerHTML=b.map(x=>`<div class="item"><div style="display:flex;justify-content:space-between"><strong style="color:var(--gold2)">${esc(x.customer_name)} (${esc(x.phone)})</strong><span class="badge ${x.status==='Confirmed'?'bc':x.status==='Cancelled'?'bx':'bp'}">${esc(x.status)}</span></div><div style="font-size:12px;color:#ddd;margin:4px 0">${esc(x.service)} — 📍 ${esc(x.branch)}</div><div style="font-size:12px;color:var(--muted);margin-bottom:8px">🗓 ${esc(x.booking_date)} • ⏰ ${esc(x.booking_time)}</div><div style="display:flex;gap:6px"><button class="btn btn-ok" style="padding:7px;font-size:12px" onclick="updateBookingStatus(${x.id},'Confirmed')">تأكيد</button><button class="btn btn-d" style="padding:7px;font-size:12px" onclick="updateBookingStatus(${x.id},'Cancelled')">إلغاء</button></div></div>`).join('')||'<div style="color:var(--muted);font-size:13px">لا توجد حجوزات</div>';
+}
+async function adminFindCustomer(){
+  if(!sb)return;const p=norm($('admSearchPhone').value);if(!p)return;const{data:c}=await sb.from('customers').select('*').eq('phone',p).maybeSingle();
+  $('admCustomerResult').innerHTML=c?`<div class="item"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><div><strong style="color:var(--gold2);font-size:16px">${esc(c.name)}</strong><div style="font-size:12px;color:var(--muted)">${esc(c.phone)}</div></div><span class="badge ${c.stamps>=6?'bc':'bp'}">${c.stamps} / 6 أختام</span></div><button class="btn btn-g" onclick="closeModal('adminModal');openCashierStampModal('${esc(c.phone)}')">⚡ فتح شاشة الختم / استبدال 50%</button></div>`:'<div class="item" style="color:#ff9a9a">الرقم غير مسجل بعد.</div>';
+}
+async function updateBookingStatus(id,status){if(!sb)return;await sb.from('bookings').update({status}).eq('id',id);showToast('تم تحديث حالة الحجز');refreshAdminData();}
+function renderDeskQr(){const w=$('salonDeskQr');w.innerHTML='';const u=location.href.split('?')[0];$('salonUrlText').textContent=u;if(typeof QRCode!=='undefined')new QRCode(w,{text:u,width:170,height:170});}
+(async function(){try{$('bookDate').value=new Date().toISOString().split('T')[0];if(!sb)return;const sp=localStorage.getItem('sense_phone'),q=new URLSearchParams(location.search);if(sp){const{data:c}=await sb.from('customers').select('*').eq('phone',sp).maybeSingle();if(c){currentCustomer=c;enterApp();}}if(q.get('phone')&&q.get('cashier')==='1')openCashierStampModal(norm(q.get('phone')));}catch(e){}})();
+</script>
+</body>
+</html>
